@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div *ngIf="personaje">
+    <ion-card>
+      <ion-card-content class="ion-text-center">
+        <img src="{{ personaje.image }}">
+        <h1>{{ personaje.name}}</h1>
+        <h2>{{ personaje.species}}</h2>
+        <p>{{ personaje.gender}}</p>
+        <p>{{ personaje.status}}</p>
+        <p>{{ personaje.location.name}}</p>
+      </ion-card-content>
+
+    </ion-card>
+  </div>
+
+</ion-content>
