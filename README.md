@@ -1,6 +1,71 @@
 # myApp
 Proyecto en IONIC para el desarrollo de App Movil
 
+## Ediciones para consumir API REST PUBLICA
+1. Seleccionar el end point de la API
+```
+https://rickandmortyapi.com/api/character
+```
+2. Crear pagina contenedora de lo que se desea mostrar
+```
+ionic g page nombre_pagina
+```
+3. Agregar el import en el modulo que usaras la API
+```
+import { HttpClientModule } from '@angular/common/http';
+```
+4. Usar la clase importada en el @NgModule
+```
+@NgModule({
+  imports: [
+    ...,
+    ...,
+    ...,
+    ...,
+    HttpClientModule
+  ],
+  declarations: [HomePage]
+})
+```
+6. Crear una inerfaz para editar las vistas (se realiza bajo el import
+```
+import { ... } from '...';
+
+interface Character {
+  name: string;
+  image: string;
+  id: string;
+  species: string;
+}
+
+```
+5. Crear el arreglo contenedor de los personajes que entregará la API (bajo la definicion de la clase)
+```
+export class Clase implements OnInit {
+  personajes: Character[] = [];
+  ...
+  ...
+}
+```
+6. En el metodo ngOnInit() agregar la llamada al end point y pasar los objetos JSON a objetos TypeScript
+```
+ this.httpClient.get<any>('https://rickandmortyapi.com/api/character')
+  .subscribe((res: any) => {
+    console.log(res);
+    this.personajes = res.results as Character[]; // Usar la interfaz Character
+  });
+```
+7. En la vista HTML crear el contenedor para consumir la informacion de los objetos
+```
+<ion-item class="item" *ngFor="let personaje of personajes" >
+  <ion-avatar aria-hidden="true" class="imagen" slot="start">
+    <img src="{{ personaje.image }}" alt="">  <!-- muestra la imagen del objeto results-->
+  </ion-avatar>
+  <ion-label>{{ personaje.name }}</ion-label>  <!-- muestra el nobmre del objeto results-->
+</ion-item>
+```
+
+
 ## Ediciones para agregar Mapa
 1. Obtener la llave de Google Maps https://console.cloud.google.com
    - Crear nuevo proyecto
