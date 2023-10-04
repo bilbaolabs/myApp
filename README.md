@@ -6,11 +6,11 @@ Proyecto en IONIC para el desarrollo de App Movil
 ```
 https://rickandmortyapi.com/api/character
 ```
-2. Crear pagina contenedora de lo que se desea mostrar
+2. Crear página contenedora para mostrar la información
 ```
 ionic g page nombre_pagina
 ```
-3. Agregar el import en el modulo que usaras la API
+3. Agregar el import en el modulo que se consuma la API
 ```
 import { HttpClientModule } from '@angular/common/http';
 ```
@@ -27,7 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [HomePage]
 })
 ```
-6. Crear una inerfaz para editar las vistas (se realiza bajo el import
+6. Crear una interfaz para editar las vistas (se realiza bajo el import)
 ```
 import { ... } from '...';
 
@@ -39,7 +39,7 @@ interface Character {
 }
 
 ```
-5. Crear el arreglo contenedor de los personajes que entregará la API (bajo la definicion de la clase)
+5. Crear el arreglo contenedor de los personajes que entregará la API (bajo la definición de la clase)
 ```
 export class Clase implements OnInit {
   personajes: Character[] = [];
