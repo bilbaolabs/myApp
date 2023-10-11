@@ -1,6 +1,46 @@
 # myApp
 Proyecto en IONIC para el desarrollo de App Movil
 
+## Ediciones para Leer Codigo QR
+1. Instalar la libreria
+```
+npm install @capacitor-community/barcode-scanner
+```
+2. En el archivo AndroidManifest.xml agregar lo siguiente:
+```
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+  xmlns:android="http://schemas.android.com/apk/res/android"
++  xmlns:tools="http://schemas.android.com/tools"
+  package="com.example">
+
+  <application
++    android:hardwareAccelerated="true"
+  >
+  </application>
+
++  <uses-permission android:name="android.permission.CAMERA" />
+
++  <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
+</manifest>
+```
+3. En el .ts de la pagina que leerá el QR agregar:
+```
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+
+...
+...
+
+async startScan() {
+    await BarcodeScanner.checkPermission({ force: true });
+    BarcodeScanner.hideBackground();
+    const result = await BarcodeScanner.startScan();
+
+    if (result.hasContent) {
+      this.lectura = result.content;
+    }
+  } 
+```
 ## Ediciones para consumir API REST PUBLICA
 1. Seleccionar el end point de la API
 ```
